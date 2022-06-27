@@ -4,13 +4,36 @@ var n = diffEl;
 var colorsEl = document.querySelector(".colors");
 var colorsBlocks;
 var rgbEl = document.querySelector(".rgb");
-var statusEl = document.querySelector(".status");
+var statusEl = document.querySelector(".status");3b
 var colors = [];
 createBlocks(n);
 resetGame();
+setNumberOfTiles();
 
 function checkColors(e) {
   // your code here
+  var bg = e.target.style.backgroundColor;
+  if (bg != colors[pickedColor]) {
+    e.target.style.visibility = "hidden";
+  } else {
+    colorsBlocks.forEach((element) => {
+      element.style.backgroundColor = bg;
+    });
+    const timeOut = setTimeout(alertMessage, 500);
+    const timeOut2 = setTimeout(timeOutFunctions, 1000);
+  }
+}
+function alertMessage() {
+  Swal.fire({
+    position: "top-center",
+    icon: "success",
+    title: " You won Thank you for playing",
+    showConfirmButton: true,
+    timer: 2500,
+  });
+}
+function timeOutFunctions() {
+  resetGame();
 }
 
 function resetGame() {
@@ -45,8 +68,23 @@ function random(r) {
   return Math.floor(Math.random() * r);
 }
 
-function setNumberOfTiles(e) {
+function setNumberOfTiles() {
   // your code here
+  diffEls.forEach((element) => {
+    element.addEventListener("click", activeClass);
+  });
+}
+
+function activeClass(e) {
+  diffEls.forEach((element) => {
+    if (element.classList.contains("active")) {
+      element.classList.remove("active");
+    }
+  });
+  e.target.classList.add("active");
+  n = e.target.textContent;
+  resetGame();
+
 }
 
 function createBlocks(num) {
