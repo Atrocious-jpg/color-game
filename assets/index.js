@@ -4,7 +4,7 @@ var n = diffEl;
 var colorsEl = document.querySelector(".colors");
 var colorsBlocks;
 var rgbEl = document.querySelector(".rgb");
-var statusEl = document.querySelector(".status");3b
+var statusEl = document.querySelector(".status");
 var colors = [];
 createBlocks(n);
 resetGame();
